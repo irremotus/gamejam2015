@@ -9,6 +9,7 @@ function Game() {
 	this.interval = 1;
 	
 	this.objects = [];
+	this.images = [];
 	
 	this.init = function() {
 		// init here
@@ -36,6 +37,7 @@ function Game() {
 		// set up canvas
 		this.canvas = document.getElementById('canvas');
 		this.ctx = this.canvas.getContext('2d');
+		
 	};
 	
 	this.runGameLoop = function() {
@@ -57,7 +59,7 @@ function Game() {
 		
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.objects.forEach(function(obj) {
-			document.game.ctx.drawImage(obj.getImage(), obj.x, obj.y, obj.width, obj.height);
+			document.game.ctx.drawImage(obj.image, obj.x, obj.y, obj.width, obj.height);
 		});
 	};
 	

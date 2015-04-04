@@ -6,7 +6,6 @@ function GameObject() {
 	this.y = 0;
 	this.width = 0;
 	this.height = 0;
-	this.image = null;
 	this.imageSrc = "";
 	this.interval = 1;
 	
@@ -39,7 +38,4 @@ function GameObject() {
 		console.log(e.offsetX + " " + e.offsetY);
 	};
 	
-	this.getImage = function() {
-		return this.image;
-	};
 }
