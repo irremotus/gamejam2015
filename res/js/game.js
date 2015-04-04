@@ -9,7 +9,6 @@ function Game() {
 	this.interval = 1;
 	
 	this.objects = [];
-	this.images = [];
 	
 	this.init = function() {
 		// init here
