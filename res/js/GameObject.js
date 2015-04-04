@@ -9,6 +9,7 @@ function GameObject() {
 	this.imageSrc = "";
 	this.image = null;
 	this.interval = 1;
+	this.isCollided = [];
 	
 	this.updateEvent = function() {
 		if (document.game.gameTime % this.interval == 0)
@@ -16,8 +17,6 @@ function GameObject() {
 	};
 	
 	this.update = function() {
-		//console.log(this.name + " " + this.count);
-		this.count += 1;
 	}
 	
 	this.clickInBounds = function(x, y) {
@@ -37,6 +36,10 @@ function GameObject() {
 	
 	this.onClick = function(e) {
 		console.log(e.offsetX + " " + e.offsetY);
+	};
+	
+	this.collidedWith = function(obj) {
+		
 	};
 	
 }

@@ -28,6 +28,16 @@ function Box(name) {
 		this.deltaX *= -1;
 		this.deltaY *= -1;
 	}
+	
+	this.collidedWith = function(obj) {
+		// obj is readonly!!!!
+		this.x -= 1 * this.deltaX;
+		this.y -= 1 * this.deltaY;
+		if (this.deltaX > 0 != obj.deltaX > 0)
+			this.deltaX *= -1;
+		if (this.deltaY > 0 != obj.deltaY > 0)
+			this.deltaY *= -1;
+	};
 }
 
 Box.prototype = new GameObject();

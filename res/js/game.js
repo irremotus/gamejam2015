@@ -49,6 +49,8 @@ function Game() {
 	this.update = function() {
 		// react to user interaction here
 		
+		this.detectCollisions();
+		
 		this.objects.forEach(function(obj) {
 			obj.updateEvent();
 		});
@@ -61,6 +63,41 @@ function Game() {
 		this.objects.forEach(function(obj) {
 			document.game.ctx.drawImage(obj.image, obj.x, obj.y, obj.width, obj.height);
 		});
+	};
+	
+	this.detectCollisions = function() {
+		var objs = this.objects;
+		for (i = 0; i < this.objects.length; i++) {
+			for (j = 0; j < this.objects.length; j++) {
+				if (i == j)
+					continue;
+				ixHigh = objs[i].x + objs[i].width;
+				iyHigh = objs[i].y + objs[i].height;
+				ixLow = objs[i].x;
+				iyLow = objs[i].y;
+				jxHigh = objs[j].x + objs[j].width;
+				jyHigh = objs[j].y + objs[j].height;
+				jxLow = objs[j].x;
+				jyLow = objs[j].y;
+				t1 = ixHigh >= jxLow;
+				t2 = iyHigh >= jyLow;
+				t3 = jxHigh >= ixLow;
+				t4 = jyHigh >= iyLow;
+				if (t1 && t2 && t3 && t4) {
+					// this is a collision because the x and y directions overlap
+					
+					// create copies of each object so each collision handler can see the colliding state of the other object
+					obj1 = $.extend({}, objs[i]);
+					obj2 = $.extend({}, objs[j]);
+					
+					// do the collisions
+					objs[i].collidedWith(obj2);
+					objs[j].collidedWith(obj1);
+				} else {
+					
+				}
+			}
+		}
 	};
 	
 	this.keyEvent = function(e) {
