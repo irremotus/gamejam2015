@@ -58,8 +58,12 @@ function Game() {
 	
 	this.draw = function() {
 		// draw the contents in the canvas here
-		
+		if (this.gameTime % 5 != 0)
+			return;
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+		this.ctx.fillStyle=("black");
+		this.ctx.fill();
 		this.objects.forEach(function(obj) {
 			document.game.ctx.drawImage(obj.image, obj.x, obj.y, obj.width, obj.height);
 		});

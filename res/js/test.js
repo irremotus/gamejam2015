@@ -1,13 +1,11 @@
-// JavaScript Document
-box1 = new Box("box1");
-box1.deltaX = 5;
-
-box2 = new Box("box2");
-box2.y = 580;
-box2.deltaY = -3;
-box2.imageSrc = "res/img/Sinistar/Sun2.bmp";
-
 $(document).ready(function(e) {
-	document.game.addObject(box1);
-	document.game.addObject(box2); 
+	for (i = 0; i < 10; i++) {
+		var o = new Box("box");
+		o.x = Math.round(Math.random() * 800);
+		o.y = Math.round(Math.random() * 600);
+		o.deltaX = Math.round(Math.random() * 5) + 1;
+		o.deltaY = Math.round(Math.random() * 5) + 1;
+		o.imageSrc = "res/img/Sinistar/Sun2.bmp";
+		document.game.addObject(o);
+	}
 });
