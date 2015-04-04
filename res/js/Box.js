@@ -5,16 +5,28 @@ function Box(name) {
 	this.name = name;
 	this.x = 0;
 	this.y = 0;
-	this.boundWidth = 20;
-	this.boundHeight = 20;
+	this.width = 20;
+	this.height = 20;
+	this.imageSrc = "res/img/Sinistar/Sun1.bmp";
+	this.interval = 5;
+	
+	this.deltaX = 1;
+	this.deltaY = 1;
 	
 	this.update = function() {
-		this.__proto__.update();
-		//console.log("updated update func");
+		this.x += this.deltaX;
+		this.y += this.deltaY;
+		
+		if (this.x > document.game.canvas.width || this.x < 0)
+			this.deltaX *= -1;
+		if (this.y > document.game.canvas.height || this.y < 0)
+			this.deltaY *= -1;
 	}
 	
 	this.onClick = function(e) {
-		alert(e.offsetX + e.offsetY);
+		console.log(e);
+		this.deltaX *= -1;
+		this.deltaY *= -1;
 	}
 }
 

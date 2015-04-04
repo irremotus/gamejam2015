@@ -5,24 +5,15 @@ $(document).ready(function(e) {
 });
 
 function Game() {
-	this.interval = 1000;
+	this.gameTime = 0;
+	this.interval = 1;
 	
 	this.objects = [];
 	
 	this.init = function() {
 		// init here
 		
-		this.loadContent();
-	};
-	
-	this.loadContent = function() {
-		// load initial content
-		
 		var self = this;
-		
-		// set up canvas
-		var canvas = document.getElementById('canvas');
-		this.context = canvas.getContext('2d');
 		
 		// enable keyboard events
 		$(document).bind('keyup', function(e) {
@@ -34,24 +25,40 @@ function Game() {
             self.mouseEvent(e);
         });
 		
+		this.loadContent();
+		
 		this.gameLoop = setInterval(function(){self.runGameLoop();}, this.interval);
+	};
+	
+	this.loadContent = function() {
+		// load initial content
+		
+		// set up canvas
+		this.canvas = document.getElementById('canvas');
+		this.ctx = this.canvas.getContext('2d');
 	};
 	
 	this.runGameLoop = function() {
 		this.update();
 		this.draw();
+		this.gameTime++;
 	};
 	
 	this.update = function() {
 		// react to user interaction here
 		
 		this.objects.forEach(function(obj) {
-			obj.update();
+			obj.updateEvent();
 		});
 	};
 	
 	this.draw = function() {
 		// draw the contents in the canvas here
+		
+		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.objects.forEach(function(obj) {
+			document.game.ctx.drawImage(obj.getImage(), obj.x, obj.y, obj.width, obj.height);
+		});
 	};
 	
 	this.keyEvent = function(e) {
@@ -66,7 +73,14 @@ function Game() {
 	};
 	
 	this.addObject = function(obj) {
+		obj.image = this.loadImage(obj.imageSrc);
 		this.objects.push(obj);
 	};
+	
+	this.loadImage = function(src) {
+		var img = new Image();
+		img.src = src;
+		return img;
+	}
 	
 }

@@ -4,8 +4,16 @@ function GameObject() {
 	this.name = "";
 	this.x = 0;
 	this.y = 0;
-	this.boundWidth = 0;
-	this.boundHeight = 0;
+	this.width = 0;
+	this.height = 0;
+	this.image = null;
+	this.imageSrc = "";
+	this.interval = 1;
+	
+	this.updateEvent = function() {
+		if (document.game.gameTime % this.interval == 0)
+			this.update();
+	};
 	
 	this.update = function() {
 		//console.log(this.name + " " + this.count);
@@ -13,7 +21,7 @@ function GameObject() {
 	}
 	
 	this.clickInBounds = function(x, y) {
-		if (x >= this.x && x <= this.x + this.boundWidth && y >= this.y && y <= this.y + this.boundHeight) {
+		if (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height) {
 			return true;
 		}
 		return false;
@@ -29,5 +37,9 @@ function GameObject() {
 	
 	this.onClick = function(e) {
 		console.log(e.offsetX + " " + e.offsetY);
+	};
+	
+	this.getImage = function() {
+		return this.image;
 	};
 }
