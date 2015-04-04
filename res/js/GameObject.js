@@ -7,6 +7,7 @@ function GameObject() {
 	this.width = 0;
 	this.height = 0;
 	this.imageSrc = "";
+	this.image = null;
 	this.interval = 1;
 	
 	this.updateEvent = function() {
